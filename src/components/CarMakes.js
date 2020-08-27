@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useFetchCarsSelect } from './FetchAPI';
 
-function CarMake({ url, options, selectMakeFn }) {
+function CarMake({ url, options, nameCar, selectMakeFn }) {
   const { loading, data, error } = useFetchCarsSelect(url, options);
+  console.log(error);
   return(
     <>
-      <div>
+    {error !== null ? 
+      <h1>Service unavailable! Please reload page once again or try later.</h1>
+    : loading ? 
+      <h1>Loading</h1>
+      : 
+      <>
         <h2>Select make</h2>
         <div>
           {data.map((makeCar) => {
@@ -14,6 +20,7 @@ function CarMake({ url, options, selectMakeFn }) {
                 key={makeCar}
                 type="button"
                 name={makeCar}
+                className={makeCar === nameCar ? 'car-list__button-border--visible': ''}
                 onClick={(e) => {
                   selectMakeFn(e);
                 }}
@@ -23,7 +30,8 @@ function CarMake({ url, options, selectMakeFn }) {
             );
           })}
         </div>
-      </div>
+      </>
+    }
     </>
   )
 }

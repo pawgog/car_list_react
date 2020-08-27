@@ -13,6 +13,7 @@ class Dashboard extends React.Component {
     const nameCar = e.target.name;
     this.setState({
       nameCar,
+      nameModel: ''
     })
   };
 
@@ -26,13 +27,11 @@ class Dashboard extends React.Component {
   render() {
     const { nameCar, nameModel } = this.state;
     return (
-      <>
-        <div>
-          <CarMakes url="/makes" selectMakeFn={this.selectMake} />
-          <CarModels url={`/models?make=${nameCar}`} selectModelFn={this.selectModel} />
-          <CarList url={`/vehicles?make=${nameCar}&model=${nameModel}`} />
-        </div>
-      </>
+      <div className="car-list__body">
+        <CarMakes url="/makes" nameCar={nameCar} selectMakeFn={this.selectMake} />
+        {nameCar !== '' ? <CarModels url={`/models?make=${nameCar}`} nameModel={nameModel} selectModelFn={this.selectModel} /> : null}
+        {nameCar !== '' && nameModel ? <CarList url={`/vehicles?make=${nameCar}&model=${nameModel}`} /> : null}
+      </div>
     );
   }
 }

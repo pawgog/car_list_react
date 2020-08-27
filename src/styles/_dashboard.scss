@@ -1,0 +1,33 @@
+.car-list {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 10px 10px 23px -15px rgba(0, 0, 0, 0.75);
+  }
+  &__list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem;
+      padding: 1.5rem;
+      border-radius: 25px;
+      color: #fff;
+      background-color: #0068c0;
+      box-shadow: 10px 10px 23px -15px rgba(0, 0, 0, 0.75);
+    }
+  }
+  &__button-border--visible {
+    &::after {
+      @include button-border-bottom;
+      transform: scaleX(1);
+    }
+  }
+}

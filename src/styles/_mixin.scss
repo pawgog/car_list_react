@@ -5,3 +5,10 @@ $tablet-width: 768px;
     @content;
   }
 }
+
+@mixin button-border-bottom {
+  display: block;
+  content: '';
+  margin-top: 5px;
+  border-bottom: solid 2px #0068c0;
+}

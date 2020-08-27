@@ -25,6 +25,28 @@ a {
   text-decoration: none;
 }
 
-button:focus {
-  outline: 0;
+button {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px 0 10px;
+  border: none;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  color: black;
+  background-color: white;
+  cursor: pointer;
+
+  &::after {
+    @include button-border-bottom;
+    transform: scaleX(0);
+    transition: transform 150ms ease-in-out;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+
+  &:focus {
+    outline: 0;
+  }
 }
