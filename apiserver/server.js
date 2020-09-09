@@ -60,10 +60,10 @@ function handleGet(req, res, data, filters) {
     throw new HttpError(405);
   }
 
-  const random = Math.random();
-  if (random >= 0.8) {
-    throw new HttpError(503);
-  }
+  // const random = Math.random();
+  // if (random >= 0.8) {
+  //   throw new HttpError(503);
+  // }
 
   let filteredData = data;
   if (filters) {

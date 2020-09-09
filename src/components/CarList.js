@@ -41,18 +41,14 @@ function CarList({ url, options }) {
   };
 
   const slideChange = (e) => {
+    const rangeLabel = document.getElementById('car-list__range-label');
+    let rangeValue = (((e.target.value - minEngineCapacity)/(maxEngineCapacity - minEngineCapacity)) * 100) - 5
+    rangeValue > 2 ? rangeLabel.style.left = `${rangeValue}%` : rangeLabel.style.left = "1%";
     setRange(e.target.value);
     setPage(itemsOnPage);
     setSelectData(filterData.slice(0, itemsOnPage));
     setSelectDataSum(filterData);
   };
-
-  console.log(
-    selectDataSum,
-    data.length > page,
-    selectDataSum.length > page,
-    selectData.length >= itemsOnPage
-  );
 
   return (
     <>
@@ -66,6 +62,7 @@ function CarList({ url, options }) {
         <>
           <h2>Selected vehicle</h2>
           <div className="car-list__list-container__input-range">
+            <span>Engine Capacity</span>
             <input
               type="range"
               min={minEngineCapacity}
@@ -73,7 +70,7 @@ function CarList({ url, options }) {
               value={range}
               onChange={(e) => slideChange(e)}
             />
-            <output className="car-list__list-container__label">
+            <output id="car-list__range-label" className="car-list__list-container__label">
               {range}cc
             </output>
           </div>
